@@ -17,25 +17,25 @@ df_stores = pd.read_csv('store.csv')
 
 '''Let's take a look at the datasets, df_sales and df_stores in that order'''
 
-# PRINT 0
+# CHECK PRINT 0
 
 '''Right away after loading the dataset I received a warning, which indicates that we have mixed types of values'''
 
-# PRINT 1
+# CHECK PRINT 1
 
 '''Let's check some basic info about the sales datasets'''
 
 print(df_sales.info())
 print(df_sales.describe())
 
-# PRINT 2
+# CHECK PRINT 2
 
 '''Let's check the stores dataset'''
 
 print(df_stores.info())
 print(df_stores.describe())
 
-# PRINT 3
+# CHECK PRINT 3
 
 '''I'm also checking for NaN values and some graphs so we can understand better distributions and other metrics'''
 
@@ -48,7 +48,7 @@ plt.show()
 df_stores.hist(bins=30, figsize=(20, 20))
 plt.show()
 
-# PRINT 4
+# CHECK PRINT 4
 
 '''Let's split the days the stores were open and the days that the stores were closed, check the data and create a
 dataset only for the days the stores were open, because that can affect the price we'll try to predict, after that
@@ -66,7 +66,7 @@ df_sales.drop(columns=['Open'], inplace=True)
 
 print(df_sales.describe())
 
-# PRINT 5
+# CHECK PRINT 5
 
 '''We also seen before that we have NaN data and other problems with the stores dataset, and after checking it,
 the most of the missing values are from stores that don't have info about the promos (because they're not
@@ -88,7 +88,7 @@ plt.show()
 
 '''Let's check our new histograms and the if still there's null values'''
 
-# PRINT 6
+# CHECK PRINT 6
 
 '''Now I'll create a new dataframe with the stores and the sales dataset, using the Store, which is meant to
 be like a primary key for union in this case, also I'll be looking at the correlation'''
@@ -103,7 +103,7 @@ plt.show()
 
 print(df.corr()['Sales'].sort_values())
 
-# PRINT 7
+# CHECK PRINT 7
 
 '''Let's split the data so we can try to see new insights, also I want to check the ScoreType so we can see
 if there's difference between the types of the stores'''
@@ -128,7 +128,7 @@ plt.show()
 
 '''Stores of the type B sell more than the other stores, and type A stores is the ones that sells less'''
 
-# PRINT 8
+# CHECK PRINT 8
 
 '''Since this data is seasonal and it was created thinking about holidays and weekdays, we're using Facebook
 Prophet for the temporal series part. The results with multivariable recurrent network for this project was
@@ -175,7 +175,7 @@ df_original, df_prediction = sales_pred(store_id=10, df_sales=df, holidays=schoo
 
 prediction_final = df_prediction.tail(60)
 
-# PRINT 9
+# CHECK PRINT 9
 
 '''Now I'll take a step back and work in a new dataset and create a daily prediction using Holt Winters method'''
 
@@ -208,7 +208,7 @@ plt.show()
 
 forecast_final = es.forecast(90)
 
-# PRINT 10
+# CHECK PRINT 10
 
 #  todo SAVE ------------------------
 
